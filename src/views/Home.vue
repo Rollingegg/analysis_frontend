@@ -11,8 +11,34 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
     name: 'Home',
+    data () {
+        return {
+            authorList: []
+        }
+    },
     components: {
         HelloWorld
+    },
+    mounted () {
+        this.fetchAuthor()
+    },
+    methods: {
+        async fetchAuthor () {
+            try {
+                const r = await this.$get('/statistics/maxPublishAuthor', {
+                    num: 5
+                })
+                if (r.data.status) {
+                    this.authorList = r.data.result
+                    console.log(this.authorList)
+                } else {
+                    this.authorList = []
+                }
+            } catch (e) {
+                this.authorList = []
+                this.$message.error(e)
+            }
+        }
     }
 }
 </script>

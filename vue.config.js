@@ -2,7 +2,7 @@ const path = require('path')
 // 是否为生产环境
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 // API路径
-const HOST = process.env.BASE_API || 'localhost:8080'
+const HOST = process.env.VUE_APP_BASE_API || 'localhost:8080'
 // 代码压缩
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 // 开启gzip压缩， 按需引用
