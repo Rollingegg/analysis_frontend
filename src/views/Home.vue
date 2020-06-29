@@ -16,3 +16,8 @@ export default {
     }
 }
 </script>
+<style lang="less">
+.home {
+    text-align: center;
+}
+</style>
