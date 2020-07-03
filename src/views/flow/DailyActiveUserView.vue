@@ -1,6 +1,6 @@
 <template>
     <a-card :hoverable="true" :bordered="false">
-        <area-stack-graph height="600px"/>
+        <area-stack-graph height="450px"/>
     </a-card>
 </template>
 

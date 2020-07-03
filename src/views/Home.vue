@@ -5,7 +5,21 @@
                 <img class="logo-img" src="../assets/logo.svg" alt="ETL">
             </div>
             <a-menu theme="dark" mode="inline" :default-selected-keys="[$route.name]">
-                <a-menu-item key="1">
+
+                <a-sub-menu key="group">
+                    <span slot="title"><a-icon type="shop"/><span>集团总览</span></span>
+                    <a-menu-item key="take_outIncome">
+                        <router-link to="/group/take_out">
+                            每月外卖收入
+                        </router-link>
+                    </a-menu-item>
+                    <a-menu-item key="shopIncome">
+                        <router-link to="/group/shop">
+                            每日电商收入
+                        </router-link>
+                    </a-menu-item>
+                </a-sub-menu>
+                <a-menu-item key="user">
                     <router-link to="/user">
                         <a-icon type="user"/>
                         <span class="nav-text">用户主题</span>
@@ -15,15 +29,35 @@
                     <a-icon type="account-book"/>
                     <span class="nav-text">订单主题</span>
                 </a-menu-item>
-                <a-menu-item key="6">
-                    <a-icon type="appstore-o"/>
-                    <span class="nav-text">商品主题</span>
+                <a-menu-item key="product">
+                    <router-link to="/product">
+                        <a-icon type="appstore-o"/>
+                        <span class="nav-text">商品主题</span>
+                    </router-link>
                 </a-menu-item>
-                <a-sub-menu key="7">
-                    <span slot="title"><a-icon type="cloud" /><span>流量主题</span></span>
+                <a-sub-menu key="take_out">
+                    <span slot="title"><a-icon type="bar-chart"/><span>外卖主题</span></span>
+                    <a-menu-item key="supplier">
+                        <router-link to="/take_out/supplier">
+                            每月外卖商家流水
+                        </router-link>
+                    </a-menu-item>
+                    <a-menu-item key="supplierRank">
+                        <router-link to="/take_out/rank">
+                            每月外卖商家排行
+                        </router-link>
+                    </a-menu-item>
+                </a-sub-menu>
+                <a-sub-menu key="flow">
+                    <span slot="title"><a-icon type="cloud"/><span>流量主题</span></span>
                     <a-menu-item key="activeUser">
                         <router-link to="/flow/active-user">
                             日活跃用户数
+                        </router-link>
+                    </a-menu-item>
+                    <a-menu-item key="province">
+                        <router-link to="/flow/province">
+                            日流量省份分布
                         </router-link>
                     </a-menu-item>
                 </a-sub-menu>
@@ -34,14 +68,6 @@
                 <a-menu-item key="3">
                     <a-icon type="upload"/>
                     <span class="nav-text">nav 3</span>
-                </a-menu-item>
-                <a-menu-item key="4">
-                    <a-icon type="bar-chart"/>
-                    <span class="nav-text">nav 4</span>
-                </a-menu-item>
-                <a-menu-item key="8">
-                    <a-icon type="shop"/>
-                    <span class="nav-text">nav 8</span>
                 </a-menu-item>
                 <a-menu-item key="about">
                     <router-link to="/about">
@@ -88,8 +114,7 @@ export default {
             authorList: []
         }
     },
-    components: {
-    },
+    components: {},
     computed: {
         ...mapState({
             copyright: state => state.copyright
@@ -134,7 +159,7 @@ export default {
         /*background: rgba(255, 255, 255, 0.2);*/
         margin: 8px 16px;
 
-        :hover{
+        :hover {
             cursor: pointer;
         }
 
@@ -146,7 +171,7 @@ export default {
 
     .title {
         font-size: @title-font-size;
-        color: rgba(132,21,121, 0.85);
+        color: rgba(132, 21, 121, 0.85);
         font-family: Avenir, "Helvetica Neue", Arial, Helvetica, sans-serif;
         font-weight: 600;
         position: relative;
@@ -155,8 +180,7 @@ export default {
 
     .main {
         padding: 24px;
-        background: #fff;
-        text-align: center;
+        background: #fff
     }
 
     .copyright {

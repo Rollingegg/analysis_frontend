@@ -21,20 +21,44 @@ const routes = [
                 component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
             },
             {
-                path: '/user',
-                name: 'user',
-                component: () => import('@/views/user/ScholarGraphView')
+                path: '/group/take_out',
+                name: 'take_outIncome',
+                component: () => import('@/views/group/TakeOutIncomeView')
             },
             {
-                path: '/flow',
-                redirect: '/flow/active-user',
-                children: [
-                    {
-                        path: '/flow/active-user',
-                        name: 'activeUser',
-                        component: () => import('@/views/flow/DailyActiveUserView')
-                    }
-                ]
+                path: '/group/shop',
+                name: 'shopIncome',
+                component: () => import('@/views/group/ShopIncomeView')
+            },
+            {
+                path: '/user',
+                name: 'user',
+                redirect: '/about'
+            },
+            {
+                path: '/product',
+                name: 'product',
+                component: () => import('@/views/product/ProductRankView')
+            },
+            {
+                path: '/take_out/supplier',
+                name: 'supplier',
+                component: () => import('@/views/take_out/SupplierAnalysisView')
+            },
+            {
+                path: '/take_out/rank',
+                name: 'supplierRank',
+                component: () => import('@/views/take_out/SupplierRankView')
+            },
+            {
+                path: '/flow/active-user',
+                name: 'activeUser',
+                component: () => import('@/views/flow/DailyActiveUserView')
+            },
+            {
+                path: '/flow/province',
+                name: 'province',
+                component: () => import('@/views/flow/DailyProvinceView')
             }
         ]
     }

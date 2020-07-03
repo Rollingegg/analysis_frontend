@@ -8,12 +8,21 @@
 
 <script>
 import CommonEchart from '@/components/common/CommonEchart'
+// import moment from 'moment'
 
 export default {
     name: 'AreaStackGraph',
     components: { CommonEchart },
+    data () {
+        return {
+            route: ''
+        }
+    },
     props: {
         height: String
+    },
+    mounted () {
+        this.route = this.$route.name
     },
     computed: {
         options () {
@@ -21,6 +30,7 @@ export default {
                 title: {
                     text: '堆叠区域图'
                 },
+                route: this.route,
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
@@ -31,7 +41,7 @@ export default {
                     }
                 },
                 legend: {
-                    data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                    data: ['男', '女', '未知']
                 },
                 toolbox: {
                     feature: {

@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { message, notification } from 'ant-design-vue'
-
 // env文件配置的变量除了NODE_ENV与BASE_URL外，都要加上VUE_APP前缀才能识别到
 // 统一配置
 const BACKEND_REQUEST = axios.create({
     baseURL: process.env.VUE_APP_BASE_API,
+    withCredentials: true, // send cookies when cross-domain requests
     responseType: 'json',
     validateStatus (status) {
         // 200 外的状态码都认定为失败

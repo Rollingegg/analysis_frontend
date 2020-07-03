@@ -6,6 +6,10 @@ import AntD from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import request from '@/utils/request'
 import echarts from 'echarts'
+import 'echarts/map/js/china.js' // 引入中国地图数据
+
+// eslint-disable-next-line no-unused-vars
+// import mock from './mock' // 引入假数据
 
 Vue.use(AntD)
 Vue.config.productionTip = false
