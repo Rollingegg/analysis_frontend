@@ -1,76 +1,39 @@
 <template>
-    <a-card :hoverable="true" :bordered="false">
-        <common-echart chart-id="user-active-graph"
-                       height="600px"
-                       width="100%"
-                       :options="options"
-        />
-    </a-card>
+    <common-echart chart-id="user-active-graph"
+                   :height="height"
+                   width="100%"
+                   :options="options"
+    />
 </template>
 
 <script>
 import CommonEchart from '@/components/common/CommonEchart'
+// import moment from 'moment'
 
 export default {
-    name: 'DailyActiveUserView',
+    name: 'AreaStackGraph',
+    components: { CommonEchart },
     data () {
         return {
-            flowData: []
+            route: ''
         }
     },
-    components: { CommonEchart },
+    props: {
+        height: String
+    },
     mounted () {
-        this.fetchFlowData()
-    },
-    methods: {
-        async fetchFlowData () {
-            try {
-                const res = await this.$get('/flow/all')
-                if (res.data) {
-                    this.flowData = res.data
-                } else {
-                    this.$message.error('获取数据失败')
-                }
-            } catch (e) {
-                this.$message.error(`获取数据失败: ${e}`)
-            }
-        }
+        this.route = this.$route.name
     },
     computed: {
-        category () {
-            const category = []
-            this.flowData.forEach(e => {
-                category.push(e.date)
-            })
-            return category
-        },
-        femaleCount () {
-            const category = []
-            this.flowData.forEach(e => {
-                category.push(e.femaleCount)
-            })
-            return category
-        },
-        maleCount () {
-            const category = []
-            this.flowData.forEach(e => {
-                category.push(e.maleCount)
-            })
-            return category
-        },
-        intersexCount () {
-            const category = []
-            this.flowData.forEach(e => {
-                category.push(e.intersexCount)
-            })
-            return category
-        },
         options () {
             return {
                 title: {
-                    text: '日活跃用户数'
+                    text: '日活跃用户数',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
-                backgroundColor: '#ffffff',
+                backgroundColor: '#293042',
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
@@ -96,7 +59,7 @@ export default {
                 xAxis: [{
                     type: 'category',
                     boundaryGap: false,
-                    data: this.category,
+                    data: dataIPSxAxis,
                     axisLabel: {
                         show: true,
                         textStyle: {
@@ -109,7 +72,8 @@ export default {
                             var maxLength = 5 // 每项显示文字个数
                             var valLength = value.length // X轴类目项的文字个数
                             var rowN = Math.ceil(valLength / maxLength) // 类目项需要换行的行数
-                            if (rowN > 1) { // 如果类目项的文字大于3,
+                            if (rowN > 1) // 如果类目项的文字大于3,
+                            {
                                 for (var i = 0; i < rowN; i++) {
                                     var temp = '' // 每次截取的字符串
                                     var start = i * maxLength // 开始截取的位置
@@ -159,24 +123,16 @@ export default {
 
                     }
                 }],
-                legend: {
-                    data: ['男', '女', '未知'],
-                    textStyle: {
-                        fontSize: 12,
-                        color: 'rgb(0,253,255,0.6)'
-                    },
-                    top: '3%'
-                },
                 series: [
                     {
-                        name: '男',
+                        name: '最高水量',
                         type: 'line',
                         smooth: true,
                         //  symbol: "none", //去掉折线点
                         stack: 100,
                         itemStyle: {
                             normal: { // 颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
-                                color: this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                     offset: 0,
                                     color: '#CB8993' // 0% 处的颜色
                                 }, {
@@ -205,18 +161,18 @@ export default {
                         areaStyle: {
                             normal: {}
                         },
-                        data: this.maleCount
+                        data: dataIPS
                     },
 
                     {
-                        name: '女',
+                        name: '最低水量',
                         type: 'line',
                         smooth: true,
                         //  symbol: "none", //去掉折线点
                         stack: 100,
                         itemStyle: {
                             normal: { // 颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
-                                color: this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                     offset: 0,
                                     color: '#64CAFA' // 0% 处的颜色
                                 }, {
@@ -245,7 +201,7 @@ export default {
                         areaStyle: {
                             normal: {}
                         },
-                        data: this.femaleCount
+                        data: dataIPS2
                     }
 
                 ]
