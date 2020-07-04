@@ -61,14 +61,6 @@
                         </router-link>
                     </a-menu-item>
                 </a-sub-menu>
-                <a-menu-item key="2">
-                    <a-icon type="video-camera"/>
-                    <span class="nav-text">nav 2</span>
-                </a-menu-item>
-                <a-menu-item key="3">
-                    <a-icon type="upload"/>
-                    <span class="nav-text">nav 3</span>
-                </a-menu-item>
                 <a-menu-item key="about">
                     <router-link to="/about">
                         <a-icon type="info-circle"/>

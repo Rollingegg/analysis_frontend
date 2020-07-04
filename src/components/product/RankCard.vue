@@ -24,6 +24,7 @@
                     <div class="rank-item-value">{{item.metric||item.orderNum}}</div>
                 </div>
             </a-skeleton>
+            <a-empty style="margin-top: 30%" v-if="!loading&&empty"/>
         </div>
     </a-card>
 </template>
@@ -36,6 +37,7 @@ export default {
     data () {
         return {
             loading: false,
+            empty: false,
             rankList: []
         }
     },
@@ -58,6 +60,7 @@ export default {
     methods: {
         async fetchRankList (searchDate) {
             this.loading = true
+            this.empty = false
             try {
                 const res = await this.$get(this.fetchApi, {
                     date: searchDate
@@ -66,9 +69,11 @@ export default {
                     this.rankList = res.data
                 } else {
                     this.$message.error('获取数据失败')
+                    this.empty = true
                 }
             } catch (e) {
                 this.$message.error(`获取数据失败: ${e}`)
+                this.empty = true
             } finally {
                 this.loading = false
             }
