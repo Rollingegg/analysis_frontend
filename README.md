@@ -1,24 +1,25 @@
-# analysisfrontend
+# AnalysisFrontend
 
-## Project setup
+NJUSE《数据集成与应用》课程大作业前端部分。
+
+使用`Vue`全家桶+`AntD`+`Echarts`开发
+
+## 项目启动
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 本地运行
+
+在启动后端项目后（其端口为400）
+
 ```
-npm run serve
+npm run dev:local
 ```
 
-### Compiles and minifies for production
+### 打包
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 

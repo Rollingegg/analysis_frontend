@@ -41,6 +41,11 @@ const routes = [
                 component: () => import('@/views/product/ProductRankView')
             },
             {
+                path: '/order',
+                name: 'order',
+                component: () => import('@/views/order/DailyOrderProvinceView')
+            },
+            {
                 path: '/take_out/supplier',
                 name: 'supplier',
                 component: () => import('@/views/take_out/SupplierAnalysisView')

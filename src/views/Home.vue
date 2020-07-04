@@ -19,15 +19,17 @@
                         </router-link>
                     </a-menu-item>
                 </a-sub-menu>
-                <a-menu-item key="user">
-                    <router-link to="/user">
-                        <a-icon type="user"/>
-                        <span class="nav-text">用户主题</span>
+<!--                <a-menu-item key="user">-->
+<!--                    <router-link to="/user">-->
+<!--                        <a-icon type="user"/>-->
+<!--                        <span class="nav-text">用户主题</span>-->
+<!--                    </router-link>-->
+<!--                </a-menu-item>-->
+                <a-menu-item key="order">
+                    <router-link to="/order">
+                        <a-icon type="account-book"/>
+                        <span class="nav-text">订单主题</span>
                     </router-link>
-                </a-menu-item>
-                <a-menu-item key="5">
-                    <a-icon type="account-book"/>
-                    <span class="nav-text">订单主题</span>
                 </a-menu-item>
                 <a-menu-item key="product">
                     <router-link to="/product">

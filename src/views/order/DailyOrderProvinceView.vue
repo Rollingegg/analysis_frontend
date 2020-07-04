@@ -1,6 +1,6 @@
 <template>
     <a-card :hoverable="true" :bordered="false">
-        <common-echart chart-id="daily-province-graph"
+        <common-echart chart-id="daily-order-province-graph"
                        height="600px"
                        width="100%"
                        :options="options"
@@ -12,7 +12,7 @@
 import CommonEchart from '@/components/common/CommonEchart'
 
 export default {
-    name: 'DailyProvinceView',
+    name: 'DailyOrderProvinceView',
     components: {
         CommonEchart
     },
@@ -50,12 +50,12 @@ export default {
                 const tmpDate = this.flowData[30 * i].dateTime
                 days.push(`${String(tmpDate).substr(5, 2)}月${String(tmpDate).substr(8, 2)}`)
                 for (let j = 0; j < 34 && 30 * i + j < this.flowData.length; j++) {
-                    tmpArr.push(this.flowData[30 * i + j].userCount)
+                    tmpArr.push(this.flowData[30 * i + j].buyAmount)
                 }
                 data.push(tmpArr)
             }
             days.forEach(e => {
-                news.push('电商部门日活地域分布')
+                news.push('电商部门销售额地域分布')
             })
             const option = {
                 baseOption: {
@@ -88,33 +88,33 @@ export default {
                     visualMap: {
                         type: 'piecewise',
                         pieces: [{
-                            min: 2001,
-                            color: '#73240D'
+                            min: 100001,
+                            color: '#191970'
+                        },
+                        {
+                            min: 50001,
+                            max: 100000,
+                            color: '#6A5ACD'
+                        },
+                        {
+                            min: 10001,
+                            max: 50000,
+                            color: '#4B0082'
                         },
                         {
                             min: 1001,
-                            max: 2000,
-                            color: '#BB0000'
-                        },
-                        {
-                            min: 501,
-                            max: 1000,
-                            color: '#BD430A'
+                            max: 10000,
+                            color: '#8B008B'
                         },
                         {
                             min: 101,
-                            max: 500,
-                            color: '#E08150'
-                        },
-                        {
-                            min: 11,
-                            max: 100,
-                            color: '#E9B090'
+                            max: 1000,
+                            color: '#FF00FF'
                         },
                         {
                             min: 1,
-                            max: 10,
-                            color: '#F2DDD2'
+                            max: 100,
+                            color: '#DDA0DD'
                         },
                         {
                             value: 0,
@@ -140,8 +140,6 @@ export default {
                         width: '20%'
                     },
                     xAxis: {
-                        min: 0,
-                        max: 4000,
                         show: false
                     },
                     yAxis: [{
@@ -258,7 +256,7 @@ export default {
                     },
                     {
                         show: true,
-                        text: '日活跃用户人数前十的省份',
+                        text: '日销售额前十的省份',
                         textStyle: {
                             color: '#2D3E53',
                             fontSize: 18
